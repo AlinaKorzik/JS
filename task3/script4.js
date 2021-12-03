@@ -11,8 +11,6 @@ const userVasya = {
     sum: 10
 };
 
-let arr = [];
-
 console.everyUserName = function (users, prefix) {
     
     for (let i = 0; i < users.length; i++) {
