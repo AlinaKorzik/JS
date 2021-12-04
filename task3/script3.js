@@ -1,13 +1,22 @@
-let element = `*`;
+const elementStar = `*`;
 
-console.log (element)
+const elementLine = `_`;
 
-for (let i = 2; i < 20; i++) {
+let christmasTreeLevel = ``;
 
-    if (i) {
+confirm (`Do you want some Christmas Magic?`);
+
+for (let i = 1; i < 20; i++) {
+
+    if (i % 2 == 1) {
     
-        element = `*_` + element
+        christmasTreeLevel = elementStar + christmasTreeLevel
 
-        console.log (element)
+        console.log (christmasTreeLevel)
+    } else {
+
+        christmasTreeLevel = elementLine + christmasTreeLevel
+
+        console.log (christmasTreeLevel)
     }
 }
