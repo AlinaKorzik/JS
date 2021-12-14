@@ -20,3 +20,5 @@ const files = ['text.docx', 'index.html', 'document.pdf', 'script.js', 'style.cs
         return pdfFiles
     }
 
+    choosePdf (files)
+
