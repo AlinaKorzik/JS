@@ -1,24 +1,16 @@
 const files = ['text.docx', 'index.html', 'document.pdf', 'script.js', 'style.css', 'summary.pdf', 'Harry_Potter.pdf', 'report.pdf'];
 
-    function choosePdf (array) {
+let pdfFiles = files.reduce ((start, current) => {
 
-        let pdfFiles = [];
+    let extension = current.split(`.`);
 
-        for (let i = 0; i < files.length; i++) {
+        if (extension[extension.length - 1] == `pdf`) {
 
-        let str = files[i];
-
-        let arr = str.split(`.`);
-
-            if (arr[1] == `pdf`) {
-
-                pdfFiles.push (str)
-            }
-
+            start.push (current)
         }
 
-        return pdfFiles
-    }
+    return start
 
-    choosePdf (files)
+}, [])
 
+console.log (pdfFiles)
