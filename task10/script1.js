@@ -31,7 +31,12 @@ class House {
 
 class Skyscraper extends House {
 
-    offices = 10;
+    constructor(width, length, floors, offices) {
+
+        super (width, length, floors);
+        this.offices = offices;
+    }
+   
 }
 
 firstSkyscraper = new Skyscraper (10, 10, 10);
@@ -42,6 +47,6 @@ thirdSkyscraper = new Skyscraper (10, 9, 15);
 
 let skyscrapers = [firstSkyscraper, secondSkyscraper, thirdSkyscraper];
 
-console.log(House.sortByFloors (skyscrapers));
+console.log(Skyscraper.sortByFloors(skyscrapers));
 
 
