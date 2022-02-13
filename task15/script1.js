@@ -1,49 +1,33 @@
-function cleanRoomsAll (dirtyLevel1, dirtyLevel2, dirtyLevel3) {
+function cleanRoom(dirtyLevel) { 
 
-    let promise_1 = new Promise (function (resolve, reject) {
+    return new Promise((resolve, reject) => {
 
-        let cleaningTime = dirtyLevel1 * 1000
+        if(dirtyLevel <=0) {
 
-        if (dirtyLevel1 > 0 && dirtyLevel1 <= 10) {
+            reject('Все чисто, уборка не требуется!')
+        } else if (dirtyLevel > 10) {
 
-            setTimeout(() => resolve(`Уборка первой комнаты завершена`), cleaningTime)
+            reject('Комната слишком грязная! Вызывайте клининг!')
         } else {
 
-            reject(new Error('Уборка первой комнаты невозможна, проверяем остальные!'))
+            setTimeout(()=> resolve(dirtyLevel), dirtyLevel * 1000)
         }
-    });
+    })
+ }
 
-    let promise_2 = new Promise (function (resolve, reject) {
+function cleanRoomsAll (dirtyLevel1, dirtyLevel2, dirtyLevel3) {
 
-        cleaningTime = dirtyLevel2 * 1000
+    let promise_1 = cleanRoom(dirtyLevel1)
 
-        if(dirtyLevel2 > 0 && dirtyLevel2 <= 10) {
+    let promise_2 = cleanRoom(dirtyLevel2)
 
-            setTimeout(() => resolve(`Уборка второй комнаты завершена`), cleaningTime)
-        } else{
-                   
-            reject(new Error('Уборка второй комнаты невозможна, проверяем остальные!'))
-        }
-    });
+    let promise_3 = cleanRoom(dirtyLevel3)
 
-    let promise_3 = new Promise (function (resolve, reject) {
-
-        cleaningTime = dirtyLevel3 * 1000
-    
-            if(dirtyLevel3 > 0 && dirtyLevel3 <= 10) {
-    
-                setTimeout(() => resolve(`Уборка третьей комнаты завершена`), cleaningTime)
-            } else {
-    
-                reject(new Error('Уборка третьей комнаты невозможна!'))
-            }                  
-    });
-
-    Promise.allSettled([promise_1, promise_2, promise_3])
+    return Promise.allSettled([promise_1, promise_2, promise_3])
 
     .then(result => {
 
-        console.log(result)
+        console.log(`Уборка завершена!`, result)
     })
 }
 
