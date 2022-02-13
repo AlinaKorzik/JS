@@ -1,30 +1,26 @@
 function cleanRoom(dirtyLevel) { 
 
-    if (dirtyLevel > 0 && dirtyLevel <= 10) {
+    return new Promise((resolve, reject) => {
 
-        let cleaningTime = dirtyLevel * 1000
+        if(dirtyLevel <=0) {
 
-        new Promise (function (resolve, reject) {
+            reject('Все чисто, уборка не требуется!')
+        } else if (dirtyLevel > 10) {
 
-            setTimeout(() => resolve(cleaningTime), cleaningTime)
+            reject('Комната слишком грязная! Вызывайте клининг!')
+        } else {
 
-        })
-
-        .then (() => {
-
-            console.log(`Уборка проведена успешно за ${cleaningTime} секунд`)
-        })
-
-    } else if (dirtyLevel <= 0) {
-
-        console.log(`Комната чистая, уборка не требуется!`)
-    } else {
-
-        console.log(`Комната слишком грязная, вызывайте клининг!`)
-    }
+            setTimeout(()=> resolve(dirtyLevel), dirtyLevel * 1000)
+        }
+    })
  }
 
  cleanRoom(9)
+
+    .then((result) => {
+        
+        console.log(`Уборка проведена за ${result} секунд `)
+    })
 
 
 
